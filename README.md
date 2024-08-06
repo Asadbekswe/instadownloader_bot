@@ -29,7 +29,7 @@ To get started with this bot, follow these steps:
 - Clone this repository to your local machine.
 
     ```
-    $ git clone [source]
+    $ git clone https://github.com/mexmonjonovuz/Instadownloader_bot.git
     
     ```
 
