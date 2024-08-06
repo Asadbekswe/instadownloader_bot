@@ -36,7 +36,7 @@ To get started with this bot, follow these steps:
 - Create a virtual environment, activate it and install required dependencies.
 
     ```
-    $ python3.10 -m venv .venv
+    $ python3.12 -m venv .venv
     $ source .venv/bin/activate
     $ pip install -r requirements.txt
     ```
