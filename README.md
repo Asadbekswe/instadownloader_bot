@@ -7,11 +7,14 @@
 ## About
 ![insta](https://github.com/user-attachments/assets/03768fd5-26ac-4d41-8a8a-153596198281)
 
+## Link the bot
+[Telegram Bot](https://t.me/instdownloder_bot)
+
 ## Commands
 
 The bot has several commands that can be used to access its features:
 
-- `/start`: Start the bot
+- `/start`:  Start the bot
 
 ## Requirements
 
@@ -40,5 +43,5 @@ To get started with this bot, follow these steps:
 
 - Create a new bot on Telegram by talking to the BotFather, and [obtain the API token](https://www.siteguarding.com/en/how-to-get-telegram-bot-api-token).
 
-- Run the bot using `python bot.py`.
+- Run the bot using `python main.py`.
 
