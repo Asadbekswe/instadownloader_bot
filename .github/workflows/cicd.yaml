@@ -1,4 +1,4 @@
-name: Asadbek P22 CI/CD Deployment
+name: Asadbek BOT CI/CD Deployment
 
 on:
   push:
