@@ -19,3 +19,4 @@ jobs:
             cd /var/www/asadbek_bot
             git pull
             systemctl restart asadbek_bot.service
+            mkdir new_file
