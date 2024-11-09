@@ -16,7 +16,6 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /var/www/asadbek_bot
+            cd /var/www/Instadownloader_bot
             git pull
-            systemctl restart asadbek_bot.service
-            mkdir new_file
+            systemctl restart bot.service
