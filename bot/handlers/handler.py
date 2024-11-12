@@ -2,6 +2,7 @@ import asyncio
 
 from aiogram import Router, Bot
 from aiogram.enums import ParseMode
+from aiogram.exceptions import TelegramForbiddenError
 from aiogram.filters import CommandStart
 from aiogram.types import Message
 
@@ -32,5 +33,5 @@ async def sent_to_video(message: Message, bot: Bot) -> None:
             sent = await message.answer(text=f"<b>Error(Link, Url) or Post Not Found !!! </b>")
             await asyncio.sleep(3)
             await bot.delete_message(chat_id=message.chat.id, message_id=sent.message_id)
-    except:  # noqa
-        await message.answer("Place try again!")
+    except TelegramForbiddenError:
+        print("Failed to send a message: Forbidden")
