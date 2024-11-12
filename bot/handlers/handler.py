@@ -11,8 +11,8 @@ router = Router()
 
 @router.message(CommandStart())
 async def command_start_handler(message: Message) -> None:
-    await message.answer(f"<i>Assalomu aleykum, <b>{message.from_user.full_name} 👋🏻</b> link yuboring !</i>")
-    answer = await message.answer(text=f"👇🏻")
+    await message.answer(
+        f"<i>Assalomu aleykum, <b>{message.from_user.full_name} 👋🏻</b> link yuborishingiz mumkin 👇🏻!</i>")
 
 
 @router.message()
@@ -27,7 +27,7 @@ async def sent_to_video(message: Message, bot: Bot) -> None:
                 await asyncio.sleep(1)
                 await animation.edit_text(text=f"<strong>{i} ...</strong>")
             await bot.delete_message(chat_id=message.chat.id, message_id=animation.message_id)
-            result = await message.answer(text=f"<strike>{copy}</strike>", parse_mode=ParseMode.HTML)
+            await message.answer(text=f"<strike>{copy}</strike>", parse_mode=ParseMode.HTML)
         else:
             await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
             sent = await message.answer(text=f"<b>Error(Link, Url) or Post Not Found !!! </b>")
