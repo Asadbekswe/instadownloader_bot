@@ -5,6 +5,8 @@ from aiogram.enums import ParseMode
 from aiogram.exceptions import TelegramForbiddenError
 from aiogram.filters import CommandStart
 from aiogram.types import Message
+import requests
+from pydantic.v1.validators import anystr_strip_whitespace
 
 router = Router()
 
@@ -14,10 +16,14 @@ async def command_start_handler(message: Message) -> None:
     await message.answer(
         f"<i>Assalomu aleykum, <b>{message.from_user.full_name} 👋🏻</b> link yuborishingiz mumkin 👇🏻!</i>")
 
+# response = requests.get("http://128.199.168.206:3000/igdl?url=https://www.instagram.com/reel/DBympmqtWWz/?utm_source=ig_web_copy_link")
+#
+# media = response.json()['url']['data'][0]['url']
 
 @router.message()
 async def sent_to_video(message: Message, bot: Bot) -> None:
     try:
+        # await message.answer(media)
         copy = message.send_copy(chat_id=message.chat.id).text
         if copy and copy.startswith('https://www.instagram.com/') and len(copy) >= 42:
             copy = copy[:12] + "dd" + copy[12:]
@@ -35,3 +41,9 @@ async def sent_to_video(message: Message, bot: Bot) -> None:
             await bot.delete_message(chat_id=message.chat.id, message_id=sent.message_id)
     except TelegramForbiddenError:
         print("Failed to send a message: Forbidden")
+
+
+
+
+
+
