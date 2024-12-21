@@ -6,13 +6,23 @@ from aiogram import Router, Bot
 from aiogram.filters import CommandStart
 from aiogram.types import Message, FSInputFile
 
+from src.db.models import User
+
 router = Router()
 
 
 @router.message(CommandStart())
 async def command_start_handler(message: Message) -> None:
-    await message.answer(
-        f"<i>Assalomu aleykum, <b>{message.from_user.full_name} 👋🏻</b> link yuborishingiz mumkin 👇🏻!</i>")
+    user_data = message.from_user.model_dump(include={'first_name', 'last_name', 'username', 'id'})
+    existing_user = await User.get_with_telegram_id(telegram_id=user_data['id'])
+    if not existing_user:
+        await User.create(
+            first_name=user_data['first_name'],
+            last_name=user_data['last_name'],
+            username=user_data['username'],
+            telegram_id=user_data['id'],
+        )
+    await message.answer(f"<i>Hi, <b>{message.from_user.full_name} 👋🏻</b> send me link 👇🏻 (by instagram)!</i>")
 
 
 def download_media(link: str):
@@ -66,25 +76,3 @@ async def sent_to_video(message: Message, bot: Bot) -> None:
     except Exception as e:
         print(f"An error occurred in the bot handler: {e}")
         await message.answer("The URL may be incorrect, please check and try again. 👈🏻🫤")
-
-# @router.message()
-# async def sent_to_video(message: Message, bot: Bot) -> None:
-#     try:
-#         # await message.answer(media)
-#         copy = message.send_copy(chat_id=message.chat.id).text
-#         if copy and copy.startswith('https://www.instagram.com/') and len(copy) >= 42:
-#             copy = copy[:12] + "dd" + copy[12:]
-#             animation = await message.answer(text=f"⏳")
-#             await asyncio.sleep(1)
-#             for i in ["3️⃣", "2️⃣", "1️⃣"]:
-#                 await asyncio.sleep(1)
-#                 await animation.edit_text(text=f"<strong>{i} ...</strong>")
-#             await bot.delete_message(chat_id=message.chat.id, message_id=animation.message_id)
-#             await message.answer(text=f"<strike>{copy}</strike>", parse_mode=ParseMode.HTML)
-#         else:
-#             await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
-#             sent = await message.answer(text=f"<b>Error(Link, Url) or Post Not Found !!! </b>")
-#             await asyncio.sleep(3)
-#             await bot.delete_message(chat_id=message.chat.id, message_id=sent.message_id)
-#     except TelegramForbiddenError:
-#         print("Failed to send a message: Forbidden")
