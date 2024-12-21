@@ -16,7 +16,7 @@ async def command_start_handler(message: Message) -> None:
 
 
 def download_media(link: str):
-    url = f"http://206.189.36.11:3000/igdl?url={link}"
+    url = f"http://{os.getenv("SERVER_IP")}/igdl?url={link}"
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
@@ -88,6 +88,3 @@ async def sent_to_video(message: Message, bot: Bot) -> None:
 #             await bot.delete_message(chat_id=message.chat.id, message_id=sent.message_id)
 #     except TelegramForbiddenError:
 #         print("Failed to send a message: Forbidden")
-
-
-
