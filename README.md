@@ -8,7 +8,7 @@
 ![insta](https://github.com/user-attachments/assets/03768fd5-26ac-4d41-8a8a-153596198281)
 
 ## Link the bot
-[Telegram Bot](https://t.me/instdownloder_bot)
+[Telegram Bot](https://t.me/videodownloading_robot)
 
 ## Commands
 
