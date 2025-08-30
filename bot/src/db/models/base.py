@@ -1,6 +1,5 @@
 from datetime import datetime
 
-import pytz
 from sqlalchemy import delete as sqlalchemy_delete, update as sqlalchemy_update, select
 from sqlalchemy import func, BigInteger
 from sqlalchemy.ext.asyncio import AsyncAttrs, create_async_engine, AsyncSession
@@ -8,7 +7,7 @@ from sqlalchemy.orm import DeclarativeBase, declared_attr, sessionmaker
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.types import TypeDecorator, DateTime
 
-from root import conf
+from bot.root import conf
 
 
 class Base(AsyncAttrs, DeclarativeBase):

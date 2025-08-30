@@ -8,10 +8,10 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from dotenv import load_dotenv
 
-from src.db.models import database
-from src.handlers import router
+from bot.src.db.models import database
+from bot.src.handlers import router
 
-load_dotenv(".env")
+load_dotenv("../.env")
 
 TOKEN = os.getenv("BOT_TOKEN")
 

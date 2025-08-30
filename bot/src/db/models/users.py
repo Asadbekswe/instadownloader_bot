@@ -5,7 +5,7 @@ from sqlalchemy import BigInteger, VARCHAR
 from sqlalchemy import Enum as SQLEnum
 from sqlalchemy.orm import mapped_column, Mapped
 
-from src.db.models import TimeBaseModel
+from bot.src.db.models import TimeBaseModel
 
 
 class User(TimeBaseModel):

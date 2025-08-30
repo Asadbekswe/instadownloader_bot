@@ -6,7 +6,7 @@ from aiogram import Router, Bot
 from aiogram.filters import CommandStart
 from aiogram.types import Message, FSInputFile
 
-from src.db.models import User
+from bot.src.db.models import User
 
 router = Router()
 
