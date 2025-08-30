@@ -3,7 +3,7 @@ from dataclasses import dataclass, asdict
 
 from dotenv import load_dotenv
 
-load_dotenv('.env')
+load_dotenv()
 
 
 @dataclass
@@ -65,6 +65,7 @@ class WebConfig(BaseConfig):
     USERNAME: str = os.getenv('ADMIN_USERNAME')
     PASSWD: str = os.getenv('ADMIN_PASSWORD')
     HASH_PASSWD: str = os.getenv('HASH_PASSWD')
+
 
 @dataclass
 class Configuration:

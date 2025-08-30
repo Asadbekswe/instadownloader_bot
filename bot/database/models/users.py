@@ -5,10 +5,10 @@ from sqlalchemy import BigInteger, VARCHAR
 from sqlalchemy import Enum as SQLEnum
 from sqlalchemy.orm import mapped_column, Mapped
 
-from bot.src.db.models import TimeBaseModel
+from bot.database.models import TimeBasedModel
 
 
-class User(TimeBaseModel):
+class User(TimeBasedModel):
     class Type(Enum):
         USER = "USER"
         ADMIN = "ADMIN"
