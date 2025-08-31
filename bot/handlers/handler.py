@@ -7,6 +7,8 @@ from aiogram import Router, Bot
 from aiogram.filters import CommandStart
 from aiogram.types import Message, FSInputFile
 
+from bot.database import User
+
 router = Router()
 
 API_BASE = "http://localhost:8000/api/download"
@@ -14,11 +16,22 @@ BASE_URL = "http://localhost:8000"
 MEDIA_DIR = os.path.abspath("media")
 os.makedirs(MEDIA_DIR, exist_ok=True)
 
-MAX_FILE_SIZE_MB = 49  # Telegram limit for non-premium users
+MAX_FILE_SIZE_MB = 49
 
 
 @router.message(CommandStart())
 async def command_start_handler(message: Message) -> None:
+    user_data = message.from_user.model_dump(include={'id', 'first_name', 'last_name', 'username'})
+    existing_user = await User.get_with_telegram_id(telegram_id=user_data['id'])
+
+    if not existing_user:
+        await User.create(
+            first_name=user_data['first_name'],
+            last_name=user_data['last_name'],
+            username=user_data['username'],
+            telegram_id=user_data['id'],
+        )
+
     await message.answer(f"<i>Hi, <b>{message.from_user.full_name} 👋🏻</b> send me an Instagram link 👇🏻</i>")
 
 

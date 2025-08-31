@@ -1,2 +1,2 @@
-from .base import TimeBasedModel, Base, BaseModel, db as database
-from .users import User
+from bot.database.models.base import TimeBasedModel, Base, BaseModel, db as database
+from bot.database.models.users import User
